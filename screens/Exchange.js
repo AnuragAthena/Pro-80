@@ -15,12 +15,18 @@ export default class Exchange extends Component{
     }
   }
 
+  createUniqueId(){
+    return Math.random().toString(36).substring(7);
+  }
+
   addItem=(itemName, description)=>{
     var userName = this.state.userName
+    var exchangeId = this.createUniqueId()
     db.collection("exchange_requests").add({
       "username"    : userName,
       "item_name"   : itemName,
-      "description" : description
+      "description" : description,
+      "exchangeId" : exchangeId,
      })
      this.setState({
        itemName : '',
